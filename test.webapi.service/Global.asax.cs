@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace test.webapi
+namespace test.webapi.service
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

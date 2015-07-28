@@ -6,7 +6,9 @@
     <div class="jumbotron">
         <h1>DataView</h1>
         <p class="lead">This is a test dataview page.</p>
-        <p><asp:ListBox ID="ListBox1" runat="server"></asp:ListBox></p>
+        <p><asp:TextBox ID="bucketText" runat="server"></asp:TextBox></p>
+        <p><asp:TextBox ID="viewText" runat="server"></asp:TextBox></p>
+        <p><asp:ListBox ID="timeseriesDataList" runat="server"></asp:ListBox></p>
     </div>
 
 </asp:Content>

@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading.Tasks;
+
+using test.integration.common.Models;
 using test.webform.ui.Utilities;
 
 namespace test.webform.ui
@@ -23,21 +25,24 @@ namespace test.webform.ui
         {
             var client = new RestClient(@"http://localhost:2181/api/data", "application/json");
             var ts = client.MakeRequest();
-            var jss = new JavaScriptSerializer();
-            var tsa = jss.Deserialize<int[]>(ts);
-
-            foreach (var value in tsa)
-                ListBox1.Items.Add(new ListItem(Convert.ToString(value)));
+            BindData(ts);
         }
 
         public async Task GetDataAsync()
         {
             var ts = await AsyncRestClient.RunAsync(@"http://localhost:2181/api/data", "application/json");
-            var js = new JavaScriptSerializer();
-            var tsa = js.Deserialize<int[]>(ts);
+            BindData(ts);
+        }
 
-            foreach (var value in tsa)
-                ListBox1.Items.Add(new ListItem(Convert.ToString(value)));
+        private void BindData(string jsonData)
+        {
+            var js = new JavaScriptSerializer();
+            var tsa = js.Deserialize<CloudBaseDataDocument>(jsonData);
+
+            bucketText.Text = tsa.Bucket;
+            viewText.Text = tsa.View;
+            foreach (var value in tsa.DataValues)
+                timeseriesDataList.Items.Add(new ListItem(String.Format("{0}: {1}", value.ValueDate, value.Value)));
         }
     }
 }
