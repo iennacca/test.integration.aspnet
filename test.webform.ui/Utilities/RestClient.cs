@@ -3,16 +3,11 @@ using System.IO;
 using System.Net;
 using System.Text;
 
+using test.integration.common.WebApi;
+
+
 namespace test.webform.ui.Utilities
 {
-    public enum HttpVerb
-    {
-        GET,
-        POST,
-        PUT,
-        DELETE
-    }
-
     public class RestClient
     {
         public string EndPoint { get; set; }
@@ -38,12 +33,12 @@ namespace test.webform.ui.Utilities
             ContentType = contentType;
         }
 
-        public string MakeRequest()
+        public string RunRequest()
         {
-            return MakeRequest("");
+            return RunRequest("");
         }
 
-        public string MakeRequest(string parameters)
+        public string RunRequest(string parameters)
         {
             var request = (HttpWebRequest)WebRequest.Create(EndPoint + parameters);
 
@@ -81,6 +76,5 @@ namespace test.webform.ui.Utilities
                 return responseValue;
             }
         }
-
     } // class
 }

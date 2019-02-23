@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Threading.Tasks;
 
 using test.integration.common.Models;
+using test.integration.common.WebApi;
 using test.webform.ui.Utilities;
 
 namespace test.webform.ui
@@ -24,13 +25,13 @@ namespace test.webform.ui
         public void GetData()
         {
             var client = new RestClient(@"http://localhost:2181/api/data", "application/json");
-            var ts = client.MakeRequest();
+            var ts = client.RunRequest();
             BindData(ts);
         }
 
         public async Task GetDataAsync()
         {
-            var ts = await AsyncRestClient.RunAsync(@"http://localhost:2181/api/data", "application/json");
+            var ts = await AsyncRestClient.RunRequest(@"http://localhost:2181/api/data", "application/json", HttpVerb.GET);
             BindData(ts);
         }
 

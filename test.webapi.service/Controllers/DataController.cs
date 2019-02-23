@@ -18,6 +18,7 @@ namespace test.webapi.service.Controllers
             DataValues = new List<TimeseriesValue>() 
             { 
                 new TimeseriesValue() { ValueDate = DateTime.Parse("1/1/2015"), Value = 1.1F },
+                new TimeseriesValue() { ValueDate = DateTime.Parse("3/1/2015"), Value = 3.3F },
                 new TimeseriesValue() { ValueDate = DateTime.Parse("2/1/2015"), Value = 2.2F } 
             }
         };
